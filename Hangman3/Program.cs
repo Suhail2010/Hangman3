@@ -60,10 +60,10 @@ namespace Hangman3
         static Random rnd = new Random();
         static void Play()
         {
-            string[] text = new string[] { "Animals", "Oceans", "Continents", "Atmosfear", "Mountains",
-                "Plants", "Viruses", "Bacteria", "Amphibians", "Birds" };
+            string[] text = new string[] { "animals", "oceans", "continents", "atmosfear", "mountains",
+                "plants", "viruses", "bacteria", "amphibians", "birds" };
             int rando = rnd.Next(0, 9);
-            string word = "car";//text[rando];
+            string word = text[rando];
             char[] gessword = Regex.Replace(word, @"\w", "_").ToCharArray();
             int key = 1;
             StringBuilder sb = new StringBuilder();
@@ -96,7 +96,6 @@ namespace Hangman3
                         i++;
 
                     }
-                    ReadLine();
                     if (key == 0)
                     {
                         if (tries != 9) WriteLine("Wrong gess try again");
@@ -123,7 +122,7 @@ namespace Hangman3
                     sb.Append(gess + "_");
                     failed = sb.ToString();
                     tries = 10;
-                    Hangman(gessword, failed, tries + 1);
+                    Hangman(gessword, failed, tries);
                     break;
                 }
                 else if (gess == "")
@@ -156,7 +155,7 @@ namespace Hangman3
             "          _/__|_H_a_n_g_e_d_    "
             };
             int won = 0;
-            if (tries > 10) { tries -= 20; won = 1; }
+            if (tries > 14) { tries -= 20; won = 1; }
             for (int round = 1; round < 11; round++)
             {
                 if (round <= failed.Length / 2 || tries == 10)
